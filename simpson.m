@@ -1,15 +1,8 @@
 function retval = simpson(f, a, b, n)
     dif = (b - a) / (n-1);
-
-    ganjil = 0;
-    for i = 1:((n - 1)/2)
-        ganjil = ganjil + f(a + dif * (2 * i - 1));
+    xi = a:dif:b;
+    retval = 0;
+    for i = 2:2:n-1
+        retval=retval+(xi(i+1)-xi(i-1))*(f(xi(i-1))+4*f(xi(i))+f(xi(i+1)))/6;
     endfor
-
-    genap = 0;
-    for i = 1:((n - 1)/2 - 1)
-        genap = genap + f(a + dif * 2 * i);
-    endfor
-    
-    retval = (dif/3) * (f(a) + f(b) + (4 * ganjil) + (2 * genap));
 endfunction
